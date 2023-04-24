@@ -20,7 +20,6 @@ def whiten(X: np.array):
 
     U, S, V = np.linalg.svd(x_covariance)
     X_whitened = np.dot(np.dot(U, np.diag(1.0 / np.sqrt(S))), U.T).dot(X_centered)
-    print(np.cov(X_whitened))
     return X_whitened
 
 

@@ -6,7 +6,7 @@ from scipy import signal
 np.random.seed(23)
 
 # Number of samples
-ns = np.linspace(0, 50, 500)
+ns = np.linspace(0, 25, 500)
 
 # Source matrix
 S = np.array([np.sin(ns * 1),
@@ -24,4 +24,4 @@ X = S.dot(A).T
 model = model.IndependentComponentAnalysis(X=X)
 
 model.predict()
-model.plot()
+model.plot(O=S.T)
