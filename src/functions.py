@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.stats import moment
 
 
 def center(X: np.array):
@@ -17,9 +18,12 @@ def whiten(X: np.array):
 
     X_centered = center(X=X)
     x_covariance = np.cov(X_centered)
+    print(x_covariance.shape)
 
     U, S, V = np.linalg.svd(x_covariance)
+
     X_whitened = np.dot(np.dot(U, np.diag(1.0 / np.sqrt(S))), U.T).dot(X_centered)
+    print(np.cov(X_whitened))
     return X_whitened
 
 

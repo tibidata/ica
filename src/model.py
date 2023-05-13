@@ -10,6 +10,7 @@ class IndependentComponentAnalysis:
         """
         self.S = None  # De-mixed signals, used later for plotting
         self.X = X
+        self.cov = None
 
     def predict(self, max_iterations: int = 5000, tolerance: float = 1e-5):
         """
@@ -32,7 +33,7 @@ class IndependentComponentAnalysis:
                 w_new = func.calculate_new_wp(X=X_whitened, wp=wp)  # Calculating new pth row of the de-mixing matrix
 
                 if p >= 1:
-                    w_new = w_new - np.dot(np.dot(w_new, W[:p].T), W[:p])
+                    w_new -= np.dot(np.dot(w_new, W[:p].T), W[:p])
 
                 dist = np.abs(np.abs((wp * w_new).sum()) - 1)
 
